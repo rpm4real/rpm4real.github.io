@@ -1,4 +1,5 @@
 ---
+permalink: /about/
 title: "Hello World"
 published: true
 ---
