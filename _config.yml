@@ -15,6 +15,12 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "thoughts"
+    values:
+      layout: "post"
 
 projects:
   sort_by: pushed
