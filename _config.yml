@@ -30,6 +30,7 @@ projects:
 collections: 
   thoughts: 
     output: true
+    layout: "post"
 
 social_media:
   # behance: your_username
