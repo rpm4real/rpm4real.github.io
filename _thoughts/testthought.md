@@ -1,8 +1,9 @@
 ---
-title: A test thought title 
+title: Pretty Tables on pandas  
 layout: "post"
+description: A guide to creating presentable tables in python using pandas. 
 ---
 
-# What is the meaning of life? 
+# Motivation 
 
-Hey all. 
+Why not? 
