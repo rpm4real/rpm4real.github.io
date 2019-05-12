@@ -1,5 +1,5 @@
 ---
-title: Pretty Tables on pandas  
+title: Pretty Tables with pandas  
 layout: "post"
 description: A guide to creating presentable tables in python using pandas. 
 date: 2019-05-06
