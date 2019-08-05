@@ -55,6 +55,45 @@ This approach is better than nothing but has a few issues:
 - Pandas takes the `__name__` attribute of any custom functions and uses it here. If we're applying custom functions or lambda function that we're applying, they probably don't have names which make sense in this case. 
 
 
+# A Solution
+
+We can leverage the `__name__` attribute to create a clearer column name and maybe even one others can make sense of. Obviously we could rename any of these columns after the dataframe is return, but in this case I wanted a solution where I could set names on the fly. 
+
+As an example, lets examine the following situation: 
+
+```python
+def my_agg(x): 
+    return (x/20).sum()
+
+iris.groupby('species').agg({
+    'sepal_length': [my_agg],
+    'sepal_width': [my_agg]
+}).round(2)
+```
+
+<table border="1" class="dataframe">  <thead>    <tr>      <th></th>      <th>sepal_length</th>      <th>sepal_width</th>    </tr>    <tr>      <th></th>      <th>my_agg</th>      <th>my_agg</th>    </tr>    <tr>      <th>species</th>      <th></th>      <th></th>    </tr>  </thead>  <tbody>    <tr>      <th>setosa</th>      <td>12.52</td>      <td>8.57</td>    </tr>    <tr>      <th>versicolor</th>      <td>14.84</td>      <td>6.92</td>    </tr>    <tr>      <th>virginica</th>      <td>16.47</td>      <td>7.44</td>    </tr>  </tbody></table>
+
+The key is creating a higher-order function which returns a function with the name attribute changed. It looks like this: 
+
+```python 
+def renamer(agg_func,desired_name):
+    def return_func(x):
+        return agg_func(x)
+    return_func.__name__ = desired_name
+    return return_func
+```
+We can apply this function outside of our application of `my_agg` to reset the `__name__` on-the-fly: 
+
+```python
+df2 = iris.groupby('species').agg({
+    'sepal_length': [renamer(my_agg,'Cool Name')],
+    'sepal_width': [renamer(my_agg,'Better Name')]
+}).round(2)
+```
+
+<table border="1" class="dataframe">  <thead>    <tr>      <th></th>      <th>sepal_length</th>      <th>sepal_width</th>    </tr>    <tr>      <th></th>      <th>Cool Name</th>      <th>Better Name</th>    </tr>    <tr>      <th>species</th>      <th></th>      <th></th>    </tr>  </thead>  <tbody>    <tr>      <th>setosa</th>      <td>12.52</td>      <td>8.57</td>    </tr>    <tr>      <th>versicolor</th>      <td>14.84</td>      <td>6.92</td>    </tr>    <tr>      <th>virginica</th>      <td>16.47</td>      <td>7.44</td>    </tr>  </tbody></table>
+
+
 
 
 
