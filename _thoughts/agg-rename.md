@@ -57,9 +57,36 @@ This approach is better than nothing but has a few issues:
 
 # A Solution
 
-We can leverage the `__name__` attribute to create a clearer column name and maybe even one others can make sense of. Obviously we could rename any of these columns after the dataframe is return, but in this case I wanted a solution where I could set names on the fly. 
+We can leverage the `__name__` attribute to create a clearer column name and maybe even one others can make sense of. 
 
-As an example, lets examine the following situation: 
+Obviously we could rename any of these columns after the dataframe is return, but in this case I wanted a solution where I could set names on the fly. 
+
+## Taking Advantage of the `__name__` Attribute
+
+If you're unfamiliar, the `__name__` attribute is something every function you or someone else defines in python comes along with.
+
+```python
+def this_function():
+    pass 
+
+print(this_function.__name__)
+```
+> this_function
+
+We can change this attribute after we define it: 
+```python
+def this_function():
+    pass 
+
+this_function.__name__ = 'that.'
+
+print(this_function.__name__)
+```
+> `that.`
+
+There are also some great options for adjusting function names as you define the function using decorators. More about that [here](https://stackoverflow.com/questions/10874432/possible-to-change-function-name-in-definition). 
+
+Returning to our application, lets examine the following situation: 
 
 ```python
 def my_agg(x): 
@@ -73,7 +100,11 @@ iris.groupby('species').agg({
 
 <table border="1" class="dataframe">  <thead>    <tr>      <th></th>      <th>sepal_length</th>      <th>sepal_width</th>    </tr>    <tr>      <th></th>      <th>my_agg</th>      <th>my_agg</th>    </tr>    <tr>      <th>species</th>      <th></th>      <th></th>    </tr>  </thead>  <tbody>    <tr>      <th>setosa</th>      <td>12.52</td>      <td>8.57</td>    </tr>    <tr>      <th>versicolor</th>      <td>14.84</td>      <td>6.92</td>    </tr>    <tr>      <th>virginica</th>      <td>16.47</td>      <td>7.44</td>    </tr>  </tbody></table>
 
-The key is creating a higher-order function which returns a function with the name attribute changed. It looks like this: 
+We could add a line adjusting the `__name__` of `my_agg()` before we start our aggregation. But what if we could rename the function as we were aggregating? Similar to how we can rename columns in a SQL statement as we define them. 
+
+## Higher-order Renaming Function
+
+We a higher-order function which returns a function with the name attribute changed. It looks like this: 
 
 ```python 
 def renamer(agg_func,desired_name):
