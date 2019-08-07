@@ -71,7 +71,7 @@ def this_function():
 
 print(this_function.__name__)
 ```
-> this_function
+> `this_function`
 
 We can change this attribute after we define it: 
 ```python
@@ -104,7 +104,7 @@ We could add a line adjusting the `__name__` of `my_agg()` before we start our a
 
 ## Higher-order Renaming Function
 
-We a higher-order function which returns a function with the name attribute changed. It looks like this: 
+To solve this problem, we can define a higher-order function which returns a copy of our original function, but with the name attribute changed. It looks like this: 
 
 ```python 
 def renamer(agg_func,desired_name):
