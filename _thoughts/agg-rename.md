@@ -52,14 +52,14 @@ This approach is better than nothing but has a few issues:
 
 - The column names still might be unclear and not work for every application; 
 - These names are still far from readible english; 
-- Pandas takes the `__name__` attribute of any custom functions and uses it here. If we're applying custom functions or lambda function that we're applying, they probably don't have names which make sense in this case. 
+- Pandas takes the `__name__` attribute of any custom functions and uses it for the column name here. In the case of aggregating with custom functions or lambda functions, it's not likely the column names will make sense in this format. 
 
 
 # A Solution
 
 We can leverage the `__name__` attribute to create a clearer column name and maybe even one others can make sense of. 
 
-Obviously we could rename any of these columns after the dataframe is return, but in this case I wanted a solution where I could set names on the fly. 
+Obviously we could rename any of these columns after the dataframe is return, but in this case I wanted a solution where I could set column names on the fly. 
 
 ## Taking Advantage of the `__name__` Attribute
 
@@ -84,7 +84,7 @@ print(this_function.__name__)
 ```
 > `that.`
 
-There are also some great options for adjusting function names as you define the function using decorators. More about that [here](https://stackoverflow.com/questions/10874432/possible-to-change-function-name-in-definition). 
+There are also some great options for adjusting a function `__name__` as you define the function using decorators. More about that [here](https://stackoverflow.com/questions/10874432/possible-to-change-function-name-in-definition). 
 
 Returning to our application, lets examine the following situation: 
 
@@ -124,7 +124,6 @@ df2 = iris.groupby('species').agg({
 
 <table border="1" class="dataframe">  <thead>    <tr>      <th></th>      <th>sepal_length</th>      <th>sepal_width</th>    </tr>    <tr>      <th></th>      <th>Cool Name</th>      <th>Better Name</th>    </tr>    <tr>      <th>species</th>      <th></th>      <th></th>    </tr>  </thead>  <tbody>    <tr>      <th>setosa</th>      <td>12.52</td>      <td>8.57</td>    </tr>    <tr>      <th>versicolor</th>      <td>14.84</td>      <td>6.92</td>    </tr>    <tr>      <th>virginica</th>      <td>16.47</td>      <td>7.44</td>    </tr>  </tbody></table>
 
-
-
+Give realistic example? 
 
 
