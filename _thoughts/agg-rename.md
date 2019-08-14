@@ -116,7 +116,7 @@ def renamer(agg_func,desired_name):
 We can apply this function outside of our application of `my_agg` to reset the `__name__` on-the-fly: 
 
 ```python
-df2 = iris.groupby('species').agg({
+iris.groupby('species').agg({
     'sepal_length': [renamer(my_agg,'Cool Name')],
     'sepal_width': [renamer(my_agg,'Better Name')]
 }).round(2)
