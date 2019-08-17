@@ -1,7 +1,13 @@
-layout: sidebar
-style: light
+# layout: sidebar
+# style: light
 
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-slate #jekyll-theme-hydeout
 plugins:
+  - jekyll-feed
+  - jekyll-gist
+  - jekyll-paginate  
   - jekyll-octicons
   - jekyll-github-metadata
   - jemoji
@@ -64,6 +70,3 @@ topics:
   #   image_url: https://www.scala-lang.org/resources/img/frontpage/scala-logo-white@2x.png
 
   # - name: Mathematics
-    
-
-theme: jekyll-theme-slate
