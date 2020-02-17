@@ -4,9 +4,9 @@ title: About
 permalink: /about/
 ---
 
-[Reverie](https://github.com/amitmerchant1990/reverie) is a Jekyll theme which is simple and opinionated. It's actually a fork of [jekyll-now](https://github.com/barryclark/jekyll-now) with some additional features and personal touches which I've implemented to suit my needs for [my blog](https://www.amitmerchant.com).
+Welcome to my blog. If you came here looking for elegant and well-polished pieces information or opinion, you're gravely mistaken. If you came here looking for scattered musings about technology, data science, math, and maybe even sports, then you're in luck! 
 
-This is a plug-and-play Jekyll theme which you can use on GitHub Pages without even setting up a local environment.
+I'm currently...
 
 ## Features
 

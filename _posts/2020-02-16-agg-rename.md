@@ -2,14 +2,8 @@
 title: "In-line Renaming of Pandas Aggregates"
 layout: post
 date: 2019-08-4 
-image: /assets/images/agg.svg
-headerImage: true
-tag:
-- pandas
-- data science
-category: blog
-author: rileymolloy
-description: The default column names can suck. Here's a quick way to improve them.
+categories: [pandas, datascience]
+excerpt: The default column names pandas gives when aggregating can suck. Here's a quick way to improve them.
 ---
 
 # The Problem 
