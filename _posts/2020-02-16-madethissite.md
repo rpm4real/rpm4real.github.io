@@ -1,5 +1,5 @@
 ---
-title: "How I made this site"
+title: "How I Made This Site"
 layout: post
 date: 2020-02-15 
 categories: [github, jekyll, meta]
@@ -8,7 +8,7 @@ excerpt: This page serves as documentation and an explanation of how I made this
 
 # The Goal
 
-I set out to create a personal website using exclusively open source technologies hosted on github pages for completely free. I wanted to ensure a template that would allow for easy testing on my local machine, as well as seamless deployment to github for publishing. I also looked for a relatively simple structure that would allow for custom CSS or javascript future hosting future projects. 
+I set out to create a personal website using exclusively open source technologies hosted on github pages for zero cost. I wanted to ensure a template that would allow for easy testing on my local machine, as well as seamless deployment to github for publishing. I also looked for a relatively simple structure that would allow for custom CSS or javascript for hosting future projects. 
 
 
 # Github Pages Default "Personal Website"
@@ -31,14 +31,11 @@ Eventually I just gave up on installing Jekyll entirely and just switched to usi
 ```bash 
 docker pull jekyll/jekyll 
 ```
-to fetch the image, then running 
+to fetch the image, then while in the root directory of your site, running 
 ```bash 
-docker run --rm \
-  --volume="$PWD:/srv/jekyll" \
-  -it jekyll/jekyll:4.0 \
-  jekyll build
+docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/jekyll:4.0 jekyll build
 ```
-and replacing `4.0` with whatever the [latest stable version](https://jekyllrb.com/news/releases/) is (`4.0` is current as of time of writing; I'm running `3.8` on my own machine right now). 
+while replacing `4.0` with whatever the [latest stable version](https://jekyllrb.com/news/releases/) is (`4.0` is current as of time of writing; I'm running `3.8` on my own machine right now). 
 
 
 
