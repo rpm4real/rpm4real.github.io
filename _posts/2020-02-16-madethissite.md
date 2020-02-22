@@ -51,7 +51,17 @@ git checkout --orphan new-theme-branch
 git rm -rf . 
 git clean -dfx 
 ```
-In the above snippet, we create and checkout a new branch called `new-theme-branch`, remove all of the files in our working directory and from the tracking index, and then remove any files we weren't tracking or were ignoring as well. 
+In the above snippet, we create and checkout a new branch called `new-theme-branch`, remove all of the files in our working directory and from the tracking index, and then remove any files we weren't tracking or were ignoring as well. Then we can add a different remote for the repo we're going to use as a theme: 
+```bash
+git remote add new-theme-remote https://github.com/theme-repo-here
+git fetch new-theme-remote 
+git pull new-theme-remote master
+```
+Double check the main branch in the theme repo you're using is called master--I've assumed that here. 
 
-
+This will do what you need to get theme up-and-running, but now we'll want to pull all of the old work we put on the old theme (if any) from the `_posts` directory or otherwise. If our old theme is on our `master` branch, then add them to `new-theme-branch` (while it's checked-out) as as follows: 
+```bash
+git checkout master -- _posts
+```
+In addition, if you have an `about.md` or something else on your old branch, you can pull it in the same way. 
 
