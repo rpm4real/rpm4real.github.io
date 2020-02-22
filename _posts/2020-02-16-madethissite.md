@@ -38,7 +38,11 @@ docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/jekyll:4.0 jekyll build
 while replacing `4.0` with whatever the [latest stable version](https://jekyllrb.com/news/releases/) is (`4.0` is current as of time of writing; I'm running `3.8` on my own machine right now). 
 
 
+# Realizing How Themes Work 
 
+Once I got Jekyll up-and-running locally, I was able to troubleshoot the aforementioned theme issues a bit more dyamically. It eventually became clear that small changes in text in the config file would not affect the theme, as themes are typically stored in gems and I had made no changes to my Gemfile. [This Jekyll doc page](https://jekyllrb.com/docs/themes/) goes into detail on how to changes themes if it's gem-based. Worth mentioning that not all themes will work out-of-box with github pages. Github pages can work with remote Jekyll themes, as the previous link will tell you, but *not all themes will work!* Namely github has some requirements on how liquid tags will work within Jekyll. 
+
+So I found my new theme and needed to make the switch.  
 
 
 
