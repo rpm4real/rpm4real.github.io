@@ -42,7 +42,16 @@ while replacing `4.0` with whatever the [latest stable version](https://jekyllrb
 
 Once I got Jekyll up-and-running locally, I was able to troubleshoot the aforementioned theme issues a bit more dyamically. It eventually became clear that small changes in text in the config file would not affect the theme, as themes are typically stored in gems and I had made no changes to my Gemfile. [This Jekyll doc page](https://jekyllrb.com/docs/themes/) goes into detail on how to changes themes if it's gem-based. Worth mentioning that not all themes will work out-of-box with github pages. Github pages can work with remote Jekyll themes, as the previous link will tell you, but *not all themes will work!* Namely github has some requirements on how liquid tags will work within Jekyll. 
 
-So I found my new theme and needed to make the switch.  
+## Little Orphan Branchie 
+
+So I found my new theme and needed to make the switch. As I mentioned before, new themes often require an entirely different set of files for configuration, a brand new set-up in the config file, and potentially a completely different file structure. Turns out the best way to start fresh with a new theme is to create an orphan branch in your git repo. Creating an orphan branch effectively represents creating a new history in your repo, unrelated to any of your prior history (histories). We can then remove all of the existing files from a our repo and pop in our new theme. ([This dev post](https://dev.to/craicoverflow/-how-to-change-the-theme-in-your-jekyll-application-k5j) was incredibly helpful in getting the hang of this initially.)
+
+```bash 
+git checkout --orphan new-theme-branch
+git rm -rf . 
+git clean -dfx 
+```
+In the above snippet, we create and checkout a new branch called `new-theme-branch`, remove all of the files in our working directory and from the tracking index, and then remove any files we weren't tracking or were ignoring as well. 
 
 
 
