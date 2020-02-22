@@ -65,3 +65,21 @@ git checkout master -- _posts
 ```
 In addition, if you have an `about.md` or something else on your old branch, you can pull it in the same way. 
 
+
+Now you can make changes on your new branch, commit them, and push them to `origin`. In some cases, you may be able to set your github pages build to your new branch, but in my case github forced me to use master (I think this is because it's my free "personal website"). If this is the case, you can override the old master. Before doing so, you may want to preserve it in a different branch called `old-theme` or something, with 
+```bash
+git checkout master 
+git branch old-theme 
+```
+
+Next, re-write master with your new theme with 
+```bash 
+git checkout new-theme-branch
+git merge -s ours master --allow-unrelated-histories
+git checkout master
+git merge new-theme-branch
+```
+In the above, after checking out the branch with our new theme, we basically force all of the old stuff from master into our new branch, prioritizing the stuff from our new branch (this is what the `-s ours` option does). This just makes it so that `master` and `new-theme-branch` align and work well with each other. Then we switch back to master and do a good-ol'-fashioned merge. 
+
+
+
